@@ -37,4 +37,6 @@ html, body, .container {
   flex-shrink: 0;
 }
 
-.chat-send-button {}
+.your-message {
+  color:#888;
+}

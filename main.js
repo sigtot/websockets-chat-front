@@ -43,4 +43,6 @@ $(document).ready(function() {
 $("#chat-send-button").click(function(){
   console.log($("#chat-input").val());
   socket.send($("#chat-input").val());
+  message('<p class="message your-message">You: '+$("#chat-input").val());
+  $("#chat-input").val("");
 });
