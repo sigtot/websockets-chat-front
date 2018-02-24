@@ -1,0 +1,40 @@
+body {
+  background: #eff3f7;
+}
+
+html, body, .container {
+  height:100%;
+}
+
+.overflow-auto {
+  overflow:auto;
+}
+
+#chat-box {
+
+}
+
+.chat-log-container {
+  flex-grow:1;
+  background:#fff;
+}
+
+.chat-input-container {
+  height:50px;
+  flex-shrink: 0;
+  background:#eee;
+}
+
+.chat-container {
+ border:1px solid #eee;
+}
+
+.flex-grow-1{
+  flex-grow: 1;
+}
+
+.flex-shrink-0{
+  flex-shrink: 0;
+}
+
+.chat-send-button {}
