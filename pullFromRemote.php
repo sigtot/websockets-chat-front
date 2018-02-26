@@ -1,8 +1,12 @@
 <?php
 
-$content = file_get_contents("php://input");
-
 $postFile = fopen("postrequest", "w");
 
-fwrite("postrequest", $content);
+foreach (getallheaders() as $name => $value) {
+  fwrite($postFile, $name.": ".$value."\n");
+}
+
+$content = file_get_contents("php://input");
+fwrite($postFile, $content);
+
 fclose($postFile);
