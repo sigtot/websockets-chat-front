@@ -1,4 +1,7 @@
 <?php
 
 $content = file_get_contents("php://input");
-echo $content;
+
+$postFile = fopen("postrequest", "w");
+
+fwrite("postrequest", $content);
