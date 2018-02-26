@@ -1,22 +1,11 @@
 <?php
 
-$postFile = fopen("postrequest", "w");
-$secret = str_replace(array("\r", "\n"), '', file_get_contents("github_webhook_secret"));
-
 $headers = getallheaders();
+$body = file_get_contents("php://input");
 
-foreach ($headers as $name => $value) {
-  fwrite($postFile, $name.": ".$value."\n");
-}
-
-$content = file_get_contents("php://input");
-$hmacHash = hash_hmac("sha1", $content, $secret);
+$secret = str_replace(array("\r", "\n"), '', file_get_contents("github_webhook_secret")); // file might contain newline
+$hmacHash = hash_hmac("sha1", $body, $secret);
 
 if("sha1=".$hmacHash === $headers["X-Hub-Signature"]) {
-  fwrite($postFile, "Signature verified");
-} else {
-  fwrite($postFile, "WARNING: Wrong signature!");
+  exec("git pull");
 }
-fwrite($postFile, $hmacHash);
-
-fclose($postFile);
