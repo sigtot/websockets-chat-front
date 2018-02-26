@@ -4,4 +4,5 @@ $content = file_get_contents("php://input");
 
 $postFile = fopen("postrequest", "w");
 
-fwrite("postrequest", $content); //blah
+fwrite("postrequest", json_encode($content)); //blah
+fclose($postFile);
