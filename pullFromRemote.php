@@ -1,6 +1,6 @@
 <?php
 
-$logFile = fopen("github.log", "w");
+$logFile = fopen("github.log", "a");
 
 fwrite($logFile, "New request on webhook endpoint!\n");
 
@@ -21,7 +21,7 @@ fwrite($logFile, "Calculated signature hash: ".$hmacHash."\n");
 
 if("sha1=".$hmacHash === $headers["X-Hub-Signature"]) {
   fwrite($logFile, "Signatures match! Pulling from master...\n");
-  fwrite($logFile, system("git pull"));
+  fwrite($logFile, shell_exec("git pull"));
   fwrite($logFile, "Successfully pulled from master\n");
   fwrite($logFile, "=======================================\n\n");
 } else {
