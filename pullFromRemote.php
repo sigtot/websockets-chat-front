@@ -7,6 +7,7 @@ foreach (getallheaders() as $name => $value) {
 }
 
 $content = file_get_contents("php://input");
-fwrite($postFile, $content);
+$hash = hash_hmac("sha1", $content, "blahblah"); // This key is not legit
+fwrite($postFile, $hash);
 
 fclose($postFile);
